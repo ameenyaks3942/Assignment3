@@ -1,0 +1,24 @@
+library(dplyr)
+
+student_data <- data.frame(
+  name = c("Maryam", "Daniel", "Khalid", "Zainab", "John"),
+  age = c(21, 19, 26, 32, 24),
+  score = c(65, 58, 90, 72, 85)
+)
+
+filename <- "assignment3.csv"
+write.csv(student_data, filename, row.names = FALSE)
+
+data <- read.csv(filename)
+print(data)
+
+filtered_data <- filter(data, age > 20)
+
+scores <- select(filtered_data, score)
+print(scores)
+
+mean_score <- mean(scores$score)
+print(mean_score)
+
+above_mean <- filter(filtered_data, score > mean_score)
+print(above_mean)
